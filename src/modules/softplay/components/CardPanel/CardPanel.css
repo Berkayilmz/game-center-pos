@@ -1,0 +1,154 @@
+.mini-card-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1.2vh;
+  padding: 1.2vh 1.5vw;
+  box-shadow: 0 0.3vh 0.8vh rgba(0, 0, 0, 0.06);
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 1.4vh;
+  box-sizing: border-box;
+}
+
+.mini-card-panel h3 {
+  font-size: 1.8vh;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5vh;
+}
+
+/* Bilgi kutusu */
+.mini-info-box {
+  border: 1px solid var(--color-border2);
+  border-radius: 0.8vh;
+  padding: 1vh 1vw;
+  background: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7vh;
+  font-size: 1.6vh;
+  flex-shrink: 0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Alt layout */
+.panel-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5vw;
+  flex-grow: 1;
+  height: 65%;
+}
+
+/* NumericPad kısmı */
+.pad-section {
+  flex: 0.8;
+  transform: scale(0.93);
+  transform-origin: left top;
+  height: 100%;
+}
+
+/* Sağdaki buton alanı */
+.action-section {
+  flex: 0.32;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vh;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+/* Butonlar */
+.btn {
+  border: none;
+  border-radius: 0.8vh;
+  padding: 1.2vh 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 1.5vh;
+  text-align: center;
+}
+
+.btn.orange {
+  background: var(--color-warning);
+  color: var(--color-text);
+}
+
+.btn.gray {
+  background: var(--color-border2);
+  color: var(--color-text);
+}
+
+.btn.green {
+  background: var(--color-success);
+  color: var(--color-text-white);
+}
+
+.btn.blue {
+  background: var(--color-info);
+  color: var(--color-text-white);
+}
+
+.btn.purple {
+  background: var(--color-accent-purple);
+  color: var(--color-text-white);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-0.2vh);
+  opacity: 0.9;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Görsel ayırıcı */
+.divider {
+  border-top: 1px solid var(--color-border2);
+  margin: 0.6vh 0;
+}
+
+/* 📱 Mobil uyum */
+@media (max-width: 1024px) {
+  .panel-main {
+    flex-direction: column;
+    gap: 1.5vh;
+    height: auto;
+  }
+
+  .pad-section {
+    transform: scale(1);
+    flex: none;
+  }
+
+  .action-section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .btn {
+    flex: 1 1 45%;
+    font-size: 1.6vh;
+    padding: 1.5vh 0;
+  }
+
+  .mini-info-box {
+    font-size: 1.5vh;
+  }
+}

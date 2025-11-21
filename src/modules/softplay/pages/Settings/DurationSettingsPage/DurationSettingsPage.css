@@ -1,0 +1,198 @@
+/* === GENEL SAYFA === */
+.settings-page {
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
+    color: var(--color-text);
+    background: var(--color-background);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* === ÜST BAŞLIK === */
+  .settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .settings-header h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+  }
+  
+  /* === ARAMA ÇUBUĞU === */
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  
+  .filter-bar input {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid var(--color-border2);
+    border-radius: 8px;
+    background: var(--color-surface);
+    font-size: 0.95rem;
+  }
+  
+  .filter-bar input:focus {
+    outline: 2px solid var(--color-primary-soft);
+  }
+  
+  /* === TABLO KAPSAYICI === */
+  .table-container {
+    flex: 1;
+    overflow-y: auto;
+    background: var(--color-surface);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-height: 580px;
+  }
+  
+  /* === TABLO === */
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .product-table thead {
+    background: var(--color-primary-soft);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  
+  .product-table th {
+    text-align: left;
+    padding: 12px;
+    font-size: 0.9rem;
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+  }
+  
+  .product-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--color-border2);
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+  
+  .product-table tbody tr:hover {
+    background: rgba(255, 165, 0, 0.08);
+    transition: background 0.15s ease;
+    cursor: pointer;
+  }
+  
+  /* === BOŞ MESAJ === */
+  .empty-msg {
+    text-align: center;
+    padding: 20px;
+    color: #999;
+    font-style: italic;
+  }
+  
+  /* === BUTONLAR === */
+  .btn {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-size: 0.9rem;
+  }
+  
+  .btn.small {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .btn.green {
+    background: var(--color-success);
+    color: var(--color-text-white);
+  }
+  
+  .btn.gray {
+    background: var(--color-border2);
+    color: var(--color-text);
+  }
+  
+  .btn.red {
+    background: var(--color-error);
+    color: var(--color-text-white);
+  }
+  
+  .btn:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  .actions {
+    display: flex;
+    gap: 6px;
+  }
+  
+  /* === FORM === */
+  .family-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .form-input {
+    padding: 8px 10px;
+    border: 1px solid var(--color-border2);
+    border-radius: 8px;
+    background: var(--color-background);
+    font-size: 0.95rem;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+  }
+  
+  .form-error {
+    color: var(--color-error);
+    font-size: 0.85rem;
+  }
+  
+  .form-actions.two-column {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .settings-page {
+      padding: 12px;
+    }
+  
+    .product-table th,
+    .product-table td {
+      font-size: 0.8rem;
+      padding: 6px;
+    }
+  
+    .settings-header h2 {
+      font-size: 1.1rem;
+    }
+  
+    .form-actions.two-column {
+      justify-content: center;
+    }
+  }

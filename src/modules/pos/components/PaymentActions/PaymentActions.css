@@ -1,0 +1,191 @@
+.payment-actions-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", sans-serif;
+    color: var(--color-text);
+  }
+  
+  /* Başlık */
+  .payment-actions-panel h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-primary-dark);
+  }
+  
+  /* Tek/Parçalı ödeme modu */
+  .payment-mode-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .payment-mode-toggle label {
+    cursor: pointer;
+    color: var(--color-text-soft);
+  }
+  
+  .payment-mode-toggle input {
+    margin-right: 4px;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+  }
+  
+  /* Toplam satırı */
+  .payment-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 6px;
+  }
+  
+  /* Tek ödeme görünümü */
+  .single-payment-options {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 12px 0;
+  }
+  
+  .single-payment-options .btn.active {
+    border: 2px solid var(--color-primary-dark);
+    transform: scale(1.05);
+  }
+  
+  /* Parçalı ödeme inputları */
+  .payment-input {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  
+  .payment-input input {
+    flex: 1;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+  
+  .payment-input input:focus {
+    outline: 2px solid var(--color-primary-soft);
+  }
+  
+  /* Buton stilleri */
+  .btn {
+    flex: 0.8;
+    padding: 8px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.15s ease;
+    font-weight: 500;
+  }
+  
+  .btn:hover {
+    opacity: 0.9;
+  }
+  
+  .btn.cash {
+    background: var(--color-warning);
+    color: var(--color-text-white);
+  }
+  
+  .btn.card {
+    background: var(--color-success);
+    color: var(--color-text-white);
+  }
+  
+  .btn.gray {
+    background: var(--color-border2);
+    color: var(--color-text);
+  }
+  
+  .btn.green {
+    background: var(--color-primary);
+    color: var(--color-text-white);
+  }
+  
+  /* Parçalı ödeme listesi */
+  .payment-list {
+    max-height: 120px;
+    overflow-y: auto;
+    margin-bottom: 6px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-background);
+    padding: 6px 8px;
+  }
+  
+  .payment-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.9rem;
+  }
+  
+  .payment-row:last-child {
+    border-bottom: none;
+  }
+  
+  .payment-list .empty {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+  
+  /* Özet (kalan - ödenen) */
+  .payment-summary {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    margin-top: 10px;
+  }
+  
+  .payment-summary .warning {
+    color: var(--color-error);
+    font-weight: 600;
+  }
+  
+  .payment-summary .done {
+    color: var(--color-success);
+    font-weight: 600;
+  }
+  
+  /* Alt butonlar */
+  .payment-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+  }
+  
+  .payment-buttons .btn.gray {
+    background: var(--color-border);
+  }
+  
+  .payment-buttons .btn.green {
+    background: var(--color-primary);
+    box-shadow: 0 2px 6px var(--color-primary-shadow);
+  }
+  
+  @media (max-width: 768px) {
+    .payment-actions-panel {
+      font-size: 0.9rem;
+      padding: 12px;
+    }
+  }

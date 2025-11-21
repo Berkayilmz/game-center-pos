@@ -1,0 +1,83 @@
+.card-info-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  height: 100%;
+  box-sizing: border-box;
+  background: var(--color-surface);
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  font-size: 1.05rem;
+}
+
+/* 🔹 Başlık */
+.card-info-panel .title {
+  color: var(--color-primary);
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* 🔹 Bilgi kutusu */
+.card-info-panel .info-box {
+  border: 1px solid var(--color-border2);
+  border-radius: 14px;
+  background-color: #fafafa;
+  padding: 18px;
+  margin-bottom: 24px;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.card-info-panel .info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05rem;
+  color: var(--color-text);
+  padding: 6px 0;
+}
+
+.card-info-panel .info-row strong {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+/* 🔹 Buton grid (2 sütunlu, büyük butonlar) */
+.card-info-panel .actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(80px, auto); /* 👈 buton yüksekliği */
+  gap: 16px 18px;
+  margin-top: auto;
+}
+
+/* 🔹 Butonlar sadece bu component için geçerli */
+.card-info-panel .btn {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.25s ease;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  padding: 0; /* grid satır yüksekliği zaten belirli */
+}
+
+.card-info-panel .btn:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-info-panel .btn:active {
+  transform: scale(0.97);
+}
+
+/* 🔹 Renkler */
+.card-info-panel .btn.orange { background-color: #f59e0b; color: #fff; }
+.card-info-panel .btn.gray { background-color: #e5e7eb; color: var(--color-text); }
+.card-info-panel .btn.green { background-color: var(--color-primary); color: #fff; }
+.card-info-panel .btn.blue { background-color: var(--color-info); color: #fff; }

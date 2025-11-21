@@ -1,0 +1,274 @@
+/* === 🌐 GENEL SAYFA YAPISI === */
+.settings-page {
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
+    color: var(--color-text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-background);
+  }
+  
+  /* === 🔹 ÜST BAŞLIK === */
+  .settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .settings-header h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+  }
+  
+  /* === 🔍 ARAMA ALANI === */
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-bar input {
+    padding: 8px 10px;
+    border: 1px solid var(--color-border2);
+    border-radius: 8px;
+    background: var(--color-surface);
+    font-size: 0.95rem;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .filter-bar input:focus {
+    outline: 2px solid var(--color-primary-soft);
+  }
+  
+  /* === TABLO KAPSAYICI === */
+  .table-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--color-surface);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    max-height: 580px; /* yaklaşık 12 satır sınırı */
+  }
+  
+  /* === TABLO === */
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-surface);
+  }
+  
+  .product-table thead {
+    background: var(--color-primary-soft);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  
+  .product-table th {
+    text-align: left;
+    padding: 12px;
+    font-size: 0.9rem;
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+  }
+  
+  .product-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--color-border2);
+    font-size: 0.9rem;
+    color: var(--color-text);
+    vertical-align: middle;
+    height: 46px;
+  }
+  
+  .product-table tbody tr:hover {
+    background: rgba(255, 165, 0, 0.08);
+    transition: background 0.15s ease;
+    cursor: pointer;
+  }
+  
+  .empty-msg {
+    text-align: center;
+    padding: 20px;
+    color: #999;
+    font-style: italic;
+  }
+  
+  /* === BUTONLAR === */
+  .btn {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-size: 0.9rem;
+  }
+  
+  .btn.small {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .btn.green {
+    background: var(--color-success);
+    color: var(--color-text-white);
+  }
+  
+  .btn.gray {
+    background: var(--color-border2);
+    color: var(--color-text);
+  }
+  
+  .btn.red {
+    background: var(--color-error);
+    color: var(--color-text-white);
+  }
+  
+  .btn:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  .actions {
+    display: flex;
+    gap: 6px;
+  }
+  
+  /* === 📦 MODAL === */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+    animation: fadeInOverlay 0.25s ease;
+  }
+  
+  @keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .modal-box.large {
+    width: 90%;
+    max-width: 720px;
+    max-height: 90vh;
+    background: var(--color-surface);
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    animation: slideUp 0.25s ease;
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  /* === 🏷️ MODAL BAŞLIK === */
+  .modal-box h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 8px;
+  }
+  
+  /* === FORM === */
+  .form-two-column {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  
+  .form-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .form-input {
+    padding: 8px 10px;
+    border: 1px solid var(--color-border2);
+    border-radius: 8px;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+  }
+  
+  /* === CHECKBOX === */
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    font-size: 0.9rem;
+  }
+  
+  /* === FORM HATA MESAJI === */
+  .form-error {
+    color: var(--color-error);
+    font-size: 0.85rem;
+    margin-top: -4px;
+  }
+  
+  /* === FORM BUTONLARI === */
+  .form-actions.two-column {
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  
+  /* === 📱 RESPONSIVE === */
+  @media (max-width: 768px) {
+    .settings-page { padding: 12px; }
+  
+    .table-container { max-height: 420px; }
+  
+    .product-table th, .product-table td {
+      font-size: 0.8rem;
+      padding: 6px;
+      height: 40px;
+    }
+  
+    .modal-box.large {
+      width: 95%;
+      padding: 16px;
+    }
+  
+    .form-two-column { grid-template-columns: 1fr; }
+  
+    .form-actions.two-column {
+      grid-column: span 1;
+      justify-content: center;
+    }
+  }

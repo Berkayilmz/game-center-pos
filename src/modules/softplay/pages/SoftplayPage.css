@@ -1,0 +1,116 @@
+.softplay-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  overflow: hidden;
+}
+
+.softplay-content {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  padding: 12px 16px;
+  overflow: hidden; /* 🔥 iç taşmaları engeller */
+
+}
+
+/* === SOL TARAF (ÇOCUK KARTLARI) === */
+.left-section {
+  flex: 0 0 65%; /* 🔹 sabit genişlik oranı */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-background);
+}
+
+/* === SAĞ TARAF (ENTRY PANEL) === */
+.right-section {
+  flex: 0 0 35%; /* 🔹 sabit genişlik oranı */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* === ÇOCUK KARTLARI GRID === */
+.child-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 8px;
+  padding-bottom: 8px;
+  overflow-y: auto;
+  align-content: flex-start;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: thin;
+}
+
+/* Chrome scrollbar */
+.child-grid::-webkit-scrollbar {
+  width: 8px;
+}
+.child-grid::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 8px;
+}
+
+/* === KARTLAR === */
+.child-card {
+  height: 105%; /* 🔹 sabit kart yüksekliği */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* === SAYFALAMA === */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px;
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
+  background: var(--color-surface);
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.pagination button {
+  background: var(--color-primary);
+  color: var(--color-text-white);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.pagination button:disabled {
+  background: var(--color-primary-dark);
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+/* === RESPONSIVE (Tablet / Mobil) === */
+@media (max-width: 900px) {
+  .softplay-content {
+    flex-direction: column;
+  }
+
+  .left-section,
+  .right-section {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .child-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

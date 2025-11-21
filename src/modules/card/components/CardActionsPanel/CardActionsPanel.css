@@ -1,0 +1,33 @@
+.card-actions-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 12px 0;
+}
+
+.btn {
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn.orange { background-color: #f59e0b; color: #fff; }
+.btn.gray { background-color: #e5e7eb; color: var(--color-text); }
+.btn.green { background-color: var(--color-primary); color: #fff; }
+.btn.blue { background-color: var(--color-info); color: #fff; }
+.btn.primary { background-color: var(--color-primary-dark); color: #fff; }

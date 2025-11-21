@@ -1,0 +1,38 @@
+:root {
+    /* 🎨 Temel ve Nötr Renkler */
+    --color-primary: #059669;       /* 🟢 Ana Yeşil */
+    --color-primary-dark: #047857;
+    --color-primary-shadow: #50be9f;
+    --color-primary-soft: #d1fae5;
+    --color-primary-light: #d5f5e4;
+  
+    --color-background: #f8f9fa;
+    --color-background-dark: #dedede;
+    --color-surface: #ffffff;
+    --color-border2: #e5e7eb;
+    --color-border: #D2D4D6;
+  
+    /* 📝 Metin Renkleri */
+    --color-text: #1f2937;
+    --color-text-white: #ffffff;
+    --color-text-soft: #6b7280;
+    --color-text-muted: #9ca3af;
+  
+    /* 🚨 Durum Renkleri */
+    --color-success: #10b981;
+    --color-error: #ef4444;
+    --color-danger: #f97316;
+    --color-warning: #f59e0b;
+    --color-info: #3b82f6;
+  
+    /* 💰 Özel */
+    --color-price: #059669;
+    --color-qty: #10b981;
+    --color-qty-button-text: #1f2937;
+
+    /* 💜 Softplay / Vurgu Renkleri */
+  --color-accent-pink: #ff0095;
+  --color-accent-pink-light: #ff5db1;
+  --color-accent-purple: #7e22ce;
+  --color-accent-purple-light: #c084fc;
+  }

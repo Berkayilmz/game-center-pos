@@ -1,0 +1,205 @@
+/* 🧸 Kartın genel görünümü */
+.child-card {
+  background-color: var(--color-surface);
+  border-radius: 16px;
+  color: var(--color-text);
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.child-card:hover {
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.25);
+  border-color: var(--color-primary);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.child-card.active {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 0 14px 2px var(--color-primary-shadow);
+}
+
+/* 🟣 Dairesel süre göstergesi */
+.child-circle {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-pink),
+    var(--color-accent-pink-light)
+  );
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(255, 0, 149, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.child-card:hover .child-circle {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 0, 149, 0.4);
+}
+
+/* 🟢 Kalan süre/Geçen süre durum renkleri */
+.child-circle.warning {
+  background: linear-gradient(135deg, #ffa500, #ffcc70);
+  box-shadow: 0 3px 8px rgba(255, 165, 0, 0.4);
+}
+
+.child-circle.overtime {
+  background: linear-gradient(135deg, #ff1744, #ff5252);
+  box-shadow: 0 3px 8px rgba(255, 23, 68, 0.5);
+}
+
+/* 👧 Çocuk bilgisi */
+.child-info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.child-info span {
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+}
+
+/* 🧊 Donduruldu etiketi */
+.freeze-tag {
+  background: #007bff;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* ⚙️ Sağ tık menüsü */
+.context-menu {
+  position: absolute;
+  background: #f9f9f9;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  padding: 4px 0;
+  min-width: 190px;
+  z-index: 9999;
+  animation: fadeIn 0.15s ease;
+  user-select: none;
+}
+
+.menu-item {
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #222;
+  transition: background 0.15s ease;
+}
+
+.menu-item:hover {
+  background: #e6f4ff;
+}
+
+.menu-item.exit {
+  color: #00695c;
+  font-weight: 500;
+}
+
+.menu-item.exit:hover {
+  background: #e0f2f1;
+}
+
+.menu-item.cancel {
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+.menu-item.cancel:hover {
+  background: #ffebee;
+}
+
+.menu-separator {
+  border-top: 1px solid #ddd;
+  margin: 4px 0;
+}
+
+/* 🚻 WC Molası ikonu (kartın sağ üst köşesinde) */
+.wc-icon {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 20px;
+  color: #007bff;
+  background: #e8f1ff;
+  border-radius: 50%;
+  padding: 4px 6px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background 0.2s ease;
+  z-index: 5;
+}
+
+.child-card:hover .wc-icon {
+  transform: scale(1.1);
+  background: #d8e8ff;
+}
+
+/* 🎨 Aile etiketi (sol üstte renkli daire içinde metin) */
+.family-tag {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* 🚻 Sağ üstteki ikon */
+.wc-icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* 🎬 Açılma animasyonu */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 📱 Mobil uyum */
+@media (max-width: 768px) {
+  .child-circle {
+    width: 70px;
+    height: 70px;
+    font-size: 0.75rem;
+  }
+
+  .child-info h4 {
+    font-size: 0.9rem;
+  }
+}

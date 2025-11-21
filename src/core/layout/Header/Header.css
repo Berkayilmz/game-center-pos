@@ -1,0 +1,111 @@
+/* 🔹 Genel header */
+.app-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* 🔹 Sol kısım */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-toggle {
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-primary);
+  transition: transform 0.15s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.15);
+}
+
+.logo {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  letter-spacing: 0.3px;
+}
+
+/* 🔹 Orta kısım (navigasyon modülleri) */
+.center {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mod-btn {
+  padding: 10px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-width: 110px;
+  text-align: center;
+}
+
+.mod-btn:hover {
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+.mod-btn.active {
+  background-color: var(--color-primary);
+  color: var(--color-text-white);
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 🔹 Sağ kısım */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.clock {
+  color: var(--color-text-soft);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* 🔹 Kullanıcı butonu */
+.user-btn {
+  background-color: var(--color-primary);
+  color: var(--color-text-white);
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.user-btn:hover {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-btn:active {
+  transform: scale(0.97);
+}
