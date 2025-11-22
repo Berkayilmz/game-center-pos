@@ -1,7 +1,7 @@
 .sidebar {
   position: fixed;
   top: 0;
-  left: -300px; /* 🔹 Artık solda */
+  left: -300px;
   width: 280px;
   height: 100vh;
   background: var(--color-surface);
@@ -50,18 +50,46 @@
   scrollbar-width: thin;
 }
 
-/* 🔹 Grup başlıkları */
-.sidebar-section {
-  margin-bottom: 16px;
+/* 🔹 Ana başlık (accordion) */
+.section-toggle {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--color-primary-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s ease;
+  border-radius: 6px;
 }
 
-.section-title {
-  font-size: 0.95rem;
-  font-weight: 600;
+.section-toggle:hover {
+  background: var(--color-primary-soft);
+}
+
+.arrow {
+  font-size: 0.8rem;
   color: var(--color-primary);
-  margin: 10px 0 8px;
-  border-left: 3px solid var(--color-primary);
-  padding-left: 6px;
+}
+
+/* 🔹 Alt menü animasyonu */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  margin-left: 6px;
+}
+
+.submenu.show {
+  max-height: 600px;
+  opacity: 1;
 }
 
 /* 🔹 Menü butonları */
@@ -70,7 +98,7 @@
   background: none;
   border: none;
   text-align: left;
-  padding: 8px 10px;
+  padding: 8px 16px;
   border-radius: 6px;
   font-size: 0.9rem;
   color: var(--color-text);
@@ -86,4 +114,9 @@
 .side-btn:active {
   background: var(--color-primary);
   color: var(--color-text-white);
+}
+
+/* 🔹 Bölüm aralığı */
+.sidebar-section {
+  margin-bottom: 10px;
 }

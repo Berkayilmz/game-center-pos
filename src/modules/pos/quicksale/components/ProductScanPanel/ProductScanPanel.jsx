@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import "./ProductScanPanel.css";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../../redux/slices/cartSlice";
-import productService from "../../../../core/services/productService";
+import { addToCart } from "../../../../../redux/slices/cartSlice";
+import productService from "../../../../../core/services/productService";
 
 const ProductScanPanel = () => {
   const [barcode, setBarcode] = useState("");

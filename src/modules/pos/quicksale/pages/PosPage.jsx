@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./PosPage.css";
 import ProductScanPanel from "../components/ProductScanPanel/ProductScanPanel";
 import CartList from "../components/CartList/CartList";
-import BarcodeListener from "../../../core/utils/BarcodeListener";
+import BarcodeListener from "../../../../core/utils/BarcodeListener";
 import SummaryPanel from "../components/SummaryPanel/SummaryPanel";
 import BestSellers from "../components/BestSellers/BestSellers";
 import PaymentActions from "../components/PaymentActions/PaymentActions";
-import productService from "../../../core/services/productService";
+import productService from "../../../../core/services/productService";
 
 const PosPage = () => {
   const [bestSellers, setBestSellers] = useState([]);

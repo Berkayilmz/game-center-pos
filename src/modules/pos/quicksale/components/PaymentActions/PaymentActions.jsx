@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./PaymentActions.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearCart } from "../../../../redux/slices/cartSlice";
-import productService from "../../../../core/services/productService";
+import { clearCart } from "../../../../../redux/slices/cartSlice";
+import productService from "../../../../../core/services/productService";
 
 const PaymentActions = () => {
   const dispatch = useDispatch();

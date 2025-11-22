@@ -1,0 +1,148 @@
+/* === 📄 DISPATCH (İRSALİYE) MODÜLÜ === */
+.dispatch-page,
+.settings-page {
+  font-family: "Segoe UI", sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === 🏷️ BAŞLIK === */
+.dispatch-page h2 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 8px;
+}
+
+/* === 🧾 FORM === */
+.form-two-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 36px;
+  margin-bottom: 20px;
+}
+
+.form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-input {
+  padding: 8px 10px;
+  border: 1px solid var(--color-border2);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-soft);
+}
+
+/* === TABLO === */
+.irsaliye-table {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.irsaliye-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+}
+
+.product-table th {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  text-align: left;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.product-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border2);
+  font-size: 0.9rem;
+}
+
+.product-table tbody tr:hover {
+  background: rgba(255, 165, 0, 0.1);
+}
+
+/* === BUTONLAR === */
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.btn.green {
+  background: var(--color-success);
+  color: var(--color-text-white);
+}
+
+.btn.orange {
+  background: var(--color-warning);
+  color: #fff;
+}
+
+.btn.red {
+  background: var(--color-error);
+  color: #fff;
+}
+
+.btn.gray {
+  background: var(--color-border2);
+  color: var(--color-text);
+}
+
+.btn.small {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* === ALT BUTONLAR === */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* === BOŞ MESAJ === */
+.empty-msg {
+  text-align: center;
+  padding: 18px;
+  color: #888;
+  font-style: italic;
+}

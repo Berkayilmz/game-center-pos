@@ -12,13 +12,7 @@ import CardContainer from "./core/components/CardContainer/CardContainer";
 // 🔹 Ana Modül Sayfaları
 import CardPage from "./modules/card/pages/CardPage";
 import SoftplayPage from "./modules/softplay/pages/SoftplayPage";
-import PosPage from "./modules/pos/pages/PosPage";
-
-// ⚙️ POS Ayarları
-import ProductsPage from "./modules/pos/pages/Settings/ProductsPage/ProductsPage";
-import CategoriesPage from "./modules/pos/pages/Settings/CategoriesPage/CategoriesPage";
-import VatSettingsPage from "./modules/pos/pages/Settings/VatSettingsPage/VatSettingsPage";
-import EndOfDayPage from "./modules/pos/pages/Settings/EndOfDayPage/EndOfDayPage";
+import PosPage from "./modules/pos/quicksale/pages/PosPage";
 
 // 💳 Kart Ayarları
 import CardSettingsPage from "./modules/card/pages/Settings/CardSettingsPage/CardSettingsPage";
@@ -30,7 +24,33 @@ import DurationSettingsPage from "./modules/softplay/pages/Settings/DurationSett
 import FamiliesPage from "./modules/softplay/pages/Settings/FamiliesPage/FamiliesPage";
 import RulesPage from "./modules/softplay/pages/Settings/RulesPage/RulesPage";
 
+// 🧾 POS & Envanter Sayfaları
+import ProductListPage from "./modules/pos/inventory/pages/ProductListPage";
+import StockTransactionPage from "./modules/pos/inventory/pages/StockTransactionPage";
+import StockCountPage from "./modules/pos/inventory/pages/StockCountPage";
+import BarcodePrintPage from "./modules/pos/inventory/pages/BarcodePrintPage";
+import QuickPriceChangePage from "./modules/pos/inventory/pages/QuickPriceChangePage";
+import ProductVoucherListPage from "./modules/pos/inventory/pages/ProductVoucherListPage";
 
+//Cari
+import CariListPage from "./modules/pos/cari/pages/CariListPage";
+import DebtVoucherPage from "./modules/pos/cari/pages/DebtVoucherPage";
+import CreditVoucherPage from "./modules/pos/cari/pages/CreditVoucherPage";
+import CollectionPage from "./modules/pos/cari/pages/CollectionPage";
+import PaymentPage from "./modules/pos/cari/pages/PaymentPage"
+import OpeningDebtPage from "./modules/pos/cari/pages/OpeningDebtPage";
+import OpeningCreditPage from "./modules/pos/cari/pages/OpeningCreditPage";
+import TransferDebtPage from "./modules/pos/cari/pages/TransferDebtPage";
+import TransferCreditPage from "./modules/pos/cari/pages/TransferCreditPage";
+import TransferPage from "./modules/pos/cari/pages/TransferPage";
+import TransactionListPage from "./modules/pos/cari/pages/TransactionListPage";
+import MovementListPage from "./modules/pos/cari/pages/MovementListPage";
+import BalanceListPage from "./modules/pos/cari/pages/BalanceListPage";
+import DispatchPage from "./modules/pos/dispatch/pages/DispatchPage";
+import DispatchListPage from "./modules/pos/dispatch/pages/DispatchListPage";
+import InvoicePage from "./modules/pos/invoice/pages/InvoicePage";
+import InvoiceListPage from "./modules/pos/invoice/pages/InvoiceListPage";
+import InvoiceLineListPage from "./modules/pos/invoice/pages/InvoiceLineListPage";
 
 const App = () => {
   return (
@@ -46,12 +66,6 @@ const App = () => {
             <Route path="/card" element={<CardPage />} />
             <Route path="/softplay" element={<SoftplayPage />} />
 
-            {/* ⚙️ POS Ayarları */}
-            <Route path="/settings/products" element={<ProductsPage />} />
-            <Route path="/settings/categories" element={<CategoriesPage />} />
-            <Route path="/settings/vat" element={<VatSettingsPage />} />
-            <Route path="/settings/endofday" element={<EndOfDayPage />} />
-
             {/* 💳 Kart Ayarları */}
             <Route path="/settings/card" element={<CardSettingsPage />} />
             <Route path="/settings/card-types" element={<CardTypesPage />} />
@@ -62,7 +76,37 @@ const App = () => {
             <Route path="/settings/families" element={<FamiliesPage />} />
             <Route path="/settings/rules" element={<RulesPage />} />
 
+            {/* 🧾 POS & Envanter */}
+            <Route path="/inventory/products" element={<ProductListPage />} />
+            <Route path="/inventory/transactions" element={<StockTransactionPage />} />
+            <Route path="/inventory/stock-count" element={<StockCountPage />} />
+            <Route path="/inventory/barcode-print" element={<BarcodePrintPage />} />
+            <Route path="/inventory/quick-price" element={<QuickPriceChangePage />} />
+            <Route path="/inventory/product-vouchers" element={<ProductVoucherListPage />} />
 
+            {/* CARİ */}
+            <Route path="/cari/list" element={<CariListPage />} />
+            <Route path="/cari/debt-vouchers" element={<DebtVoucherPage />} />
+            <Route path="/cari/credit-vouchers" element={<CreditVoucherPage />} />
+            <Route path="/cari/collections" element={<CollectionPage />} />
+            <Route path="/cari/payments" element={<PaymentPage />} />
+            <Route path="/cari/opening-debt" element={<OpeningDebtPage />} />
+            <Route path="/cari/opening-credit" element={<OpeningCreditPage />} />
+            <Route path="/cari/transfer-debt" element={<TransferDebtPage />} />
+            <Route path="/cari/transfer-credit" element={<TransferCreditPage />} />
+            <Route path="/cari/transfer" element={<TransferPage />} />
+            <Route path="/cari/transactions" element={<TransactionListPage />} />
+            <Route path="/cari/movements" element={<MovementListPage />} />
+            <Route path="/cari/balances" element={<BalanceListPage />} />
+
+            {/* İRSALİYE */}
+            <Route path="/dispatch/:type" element={<DispatchPage />} />
+            <Route path="/dispatch/list" element={<DispatchListPage />} />
+
+            {/* FATURA-FİŞ */}
+            <Route path="/invoice/:type" element={<InvoicePage />} />
+            <Route path="/invoice/list" element={<InvoiceListPage />} />
+            <Route path="/invoice/lines" element={<InvoiceLineListPage />} />
 
             {/* 🚫 404 */}
             <Route path="*" element={<div>Sayfa bulunamadı</div>} />
