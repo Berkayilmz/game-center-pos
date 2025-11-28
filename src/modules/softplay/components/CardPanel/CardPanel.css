@@ -13,14 +13,7 @@
   box-sizing: border-box;
 }
 
-.mini-card-panel h3 {
-  font-size: 1.8vh;
-  font-weight: 600;
-  color: var(--color-primary-dark);
-  margin-bottom: 0.5vh;
-}
-
-/* Bilgi kutusu */
+/* 🔹 Kart Bilgisi */
 .mini-info-box {
   border: 1px solid var(--color-border2);
   border-radius: 0.8vh;
@@ -30,7 +23,6 @@
   flex-direction: column;
   gap: 0.7vh;
   font-size: 1.6vh;
-  flex-shrink: 0;
 }
 
 .info-row {
@@ -42,27 +34,35 @@
   line-height: 1.3;
 }
 
-/* Alt layout */
+/* 🔹 Ana Panel Yapısı */
 .panel-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2vh;
+  height: 100%;
+}
+
+/* 🔹 Üst Alan */
+.top-area {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  gap: 0.5vw;
-  flex-grow: 1;
-  height: 65%;
+  gap: 0.6vw;
+  flex: 1;
+  height: 70%;
 }
 
-/* NumericPad kısmı */
+/* 🔹 NumericPad Alanı */
 .pad-section {
-  flex: 0.8;
-  transform: scale(0.93);
+  flex: 0.75;
+  transform: scale(0.95);
   transform-origin: left top;
   height: 100%;
 }
 
-/* Sağdaki buton alanı */
+/* 🔹 Sağdaki Butonlar */
 .action-section {
-  flex: 0.32;
+  flex: 0.35;
   display: flex;
   flex-direction: column;
   gap: 0.8vh;
@@ -70,7 +70,7 @@
   height: 100%;
 }
 
-/* Butonlar */
+/* 🔹 Buton Stilleri */
 .btn {
   border: none;
   border-radius: 0.8vh;
@@ -84,7 +84,7 @@
 
 .btn.orange {
   background: var(--color-warning);
-  color: var(--color-text);
+  color: var(--color-text-dark);
 }
 
 .btn.gray {
@@ -94,6 +94,11 @@
 
 .btn.green {
   background: var(--color-success);
+  color: var(--color-text-white);
+}
+
+.btn.red {
+  background: var(--color-error);
   color: var(--color-text-white);
 }
 
@@ -117,13 +122,42 @@
   cursor: not-allowed;
 }
 
-/* Görsel ayırıcı */
+/* 🔹 Görsel Ayırıcı */
 .divider {
   border-top: 1px solid var(--color-border2);
   margin: 0.6vh 0;
 }
 
-/* 📱 Mobil uyum */
+/* 🔹 Alt Bölüm */
+/* Alt bölüm */
+.bottom-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8vh;
+  padding-top: 1vh;
+}
+
+/* Nakit ve Kredi Kartı aynı renk paletinde */
+.btn.payment {
+  background: var(--color-info);
+  color: var(--color-text-white);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+/* Aktif ödeme tipi butonu */
+.btn.payment.active {
+  background: var(--color-info-dark);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
+  transform: scale(0.98);
+}
+
+/* Hover efekti */
+.btn.payment:hover:not(:disabled) {
+  opacity: 0.95;
+  transform: translateY(-0.15vh);
+}
+/* 📱 Mobil Uyumu */
 @media (max-width: 1024px) {
   .panel-main {
     flex-direction: column;

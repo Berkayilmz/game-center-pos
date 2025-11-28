@@ -1,0 +1,315 @@
+/* ==========================
+   💰 KASA MODÜLÜ GENEL STİL
+   ========================== */
+
+   .cash-define-page,
+   .cash-form,
+   .cash-list-page {
+     background: var(--color-surface);
+     border: 1px solid var(--color-border);
+     border-radius: 1vh;
+     padding: 2vh 2vw;
+     margin: 3vh auto;
+     font-family: "Segoe UI", sans-serif;
+     box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.05);
+     color: var(--color-text);
+   }
+   
+   /* ==========================
+      📋 KASA TANIMLAMA SAYFASI
+      ========================== */
+   .cash-define-page {
+     width: 40%;
+   }
+   
+   .cash-define-page h2 {
+     text-align: center;
+     color: var(--color-primary-dark);
+     font-weight: 700;
+     margin-bottom: 1.5vh;
+   }
+   
+   .cash-form-inline {
+     display: flex;
+     justify-content: center;
+     margin-bottom: 2vh;
+   }
+   
+   .cash-form-inline input {
+     width: 90%;
+     padding: 1vh;
+     border: 1px solid var(--color-border2);
+     border-radius: 0.5vh;
+     transition: 0.2s ease;
+   }
+   
+   .cash-form-inline input:focus {
+     border-color: var(--color-primary);
+     box-shadow: 0 0 0.4vh var(--color-primary-soft);
+   }
+   
+   /* ==========================
+      🧾 GENEL KASA FORMU
+      ========================== */
+   .cash-form {
+     width: 60%;
+   }
+   
+   .cash-form h2 {
+     text-align: center;
+     color: var(--color-primary-dark);
+     font-size: 2.2vh;
+     font-weight: 700;
+     margin-bottom: 2vh;
+   }
+   
+   /* Form Grid */
+   .form-grid {
+     display: grid;
+     grid-template-columns: 1fr 1.5fr;
+     gap: 1vh 1vw;
+     align-items: center;
+     margin-bottom: 2vh;
+   }
+   
+   .form-grid label {
+     font-weight: 600;
+     font-size: 1.6vh;
+     color: var(--color-text);
+   }
+   
+   label.required::after {
+     content: " *";
+     color: var(--color-error);
+   }
+   
+   /* Input & Select */
+   .form-grid input,
+   .form-grid select {
+     padding: 0.8vh 1vw;
+     border: 1px solid var(--color-border2);
+     border-radius: 0.6vh;
+     font-size: 1.5vh;
+     transition: all 0.2s ease;
+     width: 100%;
+     box-sizing: border-box;
+     background: var(--color-surface);
+   }
+   
+   .form-grid input:focus,
+   .form-grid select:focus {
+     outline: none;
+     border-color: var(--color-primary);
+     box-shadow: 0 0 0.4vh var(--color-primary-shadow);
+   }
+   
+   /* ==========================
+      🧭 BUTONLAR
+      ========================== */
+   .button-group,
+   .toolbar {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     gap: 1vw;
+     margin-top: 2vh;
+     flex-wrap: wrap;
+   }
+   
+   .btn {
+     flex: 1;
+     border: none;
+     border-radius: 0.6vh;
+     padding: 1.2vh 0;
+     font-weight: 600;
+     font-size: 1.5vh;
+     cursor: pointer;
+     color: var(--color-text-white);
+     transition: all 0.2s ease;
+     text-align: center;
+   }
+   
+   .btn:hover:not(:disabled) {
+     opacity: 0.9;
+     transform: translateY(-0.1vh);
+   }
+   
+   .btn:disabled {
+     opacity: 0.6;
+     cursor: not-allowed;
+   }
+   
+   /* 🎨 Renk Temaları */
+   .btn.blue { background: var(--color-info-dark); }
+   .btn.green { background: var(--color-primary); }
+   .btn.red { background: var(--color-error); }
+   .btn.gray { background: var(--color-text-muted); }
+   .btn.yellow { background: var(--color-warning); }
+   
+   /* ==========================
+      📄 LİSTE / RAPOR SAYFALARI
+      ========================== */
+   .cash-list-page {
+     width: 90%;
+     background: var(--color-surface);
+     border: 1px solid var(--color-border);
+     border-radius: 8px;
+     padding: 2vh 2vw;
+   }
+   
+   /* Header */
+   .cash-list-page .header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     border-bottom: 2px solid var(--color-border2);
+     margin-bottom: 1.5vh;
+     padding-bottom: 0.8vh;
+   }
+   
+   .cash-list-page .header h2 {
+     color: var(--color-primary-dark);
+     font-size: 2vh;
+     font-weight: 700;
+   }
+   
+   /* Filtre Panel */
+   .filter-panel {
+     background: var(--color-background);
+     border: 1px solid var(--color-border2);
+     border-radius: 6px;
+     padding: 1vh 1vw;
+     margin-bottom: 1.5vh;
+   }
+   
+   .filter-grid {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     gap: 0.8vh 1vw;
+     align-items: center;
+   }
+   
+   .date-range {
+     display: flex;
+     align-items: center;
+     gap: 0.4vw;
+   }
+   
+   /* Toolbar */
+   .toolbar {
+     background: var(--color-primary-light);
+     border: 1px solid var(--color-primary-soft);
+     padding: 0.8vh 1vw;
+     margin-bottom: 1vh;
+     border-radius: 6px;
+   }
+   
+   .toolbar .left,
+   .toolbar .right {
+     display: flex;
+     gap: 0.6vw;
+   }
+   
+   /* ==========================
+      📊 TABLOLAR
+      ========================== */
+   .cash-table {
+     background: var(--color-surface);
+     border: 1px solid var(--color-border2);
+     border-radius: 6px;
+     overflow-x: auto;
+   }
+   
+   .cash-table table {
+     width: 100%;
+     border-collapse: collapse;
+   }
+   
+   .cash-table th,
+   .cash-table td {
+     border-bottom: 1px solid var(--color-border2);
+     padding: 0.8vh 0.8vw;
+     text-align: left;
+     font-size: 1.5vh;
+   }
+   
+   .cash-table th {
+     background: var(--color-background-dark);
+     color: var(--color-text);
+     font-weight: 700;
+   }
+   
+   .cash-table tr:hover {
+     background: var(--color-primary-soft);
+     transition: background 0.2s ease;
+   }
+   
+   .cash-table tr.selected {
+     background-color: var(--color-primary-light);
+   }
+   
+   /* Boş Liste */
+   .empty {
+     text-align: center;
+     padding: 2vh;
+     color: var(--color-text-soft);
+     font-style: italic;
+   }
+   
+   /* ==========================
+      ⚙️ ÖZEL BAKİYE FİLTRELERİ
+      ========================== */
+   .right-buttons {
+     display: flex;
+     gap: 0.6vw;
+   }
+   
+   .balance-filters {
+     display: flex;
+     flex-direction: column;
+     background: var(--color-background-dark);
+     border-radius: 6px;
+     border: 1px solid var(--color-border2);
+     padding: 1vh 1vw;
+     grid-column: span 2;
+   }
+   
+   .balance-filters label {
+     font-size: 1.5vh;
+     display: flex;
+     align-items: center;
+     gap: 0.5vw;
+     cursor: pointer;
+     color: var(--color-text);
+   }
+   
+   .balance-filters input[type="radio"] {
+     accent-color: var(--color-primary);
+   }
+   
+   .filter-actions {
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+     gap: 0.6vh;
+     align-items: flex-start;
+     grid-column: span 1;
+   }
+   
+   /* ==========================
+      📱 Responsive
+      ========================== */
+   @media (max-width: 1024px) {
+     .cash-form, .cash-define-page, .cash-list-page {
+       width: 95%;
+     }
+     .form-grid, .filter-grid {
+       grid-template-columns: 1fr;
+     }
+     .button-group, .toolbar {
+       flex-direction: column;
+     }
+     .btn {
+       width: 100%;
+     }
+   }

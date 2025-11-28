@@ -51,6 +51,22 @@ import DispatchListPage from "./modules/pos/dispatch/pages/DispatchListPage";
 import InvoicePage from "./modules/pos/invoice/pages/InvoicePage";
 import InvoiceListPage from "./modules/pos/invoice/pages/InvoiceListPage";
 import InvoiceLineListPage from "./modules/pos/invoice/pages/InvoiceLineListPage";
+import CashReportPage from "./modules/report/pages/CashReportPage";
+
+// 💵 Kasa Modülü Sayfaları
+import CashDefinePage from "./modules/pos/cash/pages/CashDefinePage";
+import CashCollectionPage from "./modules/pos/cash/pages/CashCollectionPage";
+import CashPaymentPage from "./modules/pos/cash/pages/CashPaymentPage";
+import CashOtherCollectionPage from "./modules/pos/cash/pages/CashOtherCollectionPage";
+import CashOtherPaymentPage from "./modules/pos/cash/pages/CashOtherPaymentPage";
+import CashTransferPage from "./modules/pos/cash/pages/CashTransferPage";
+import CashVoucherListPage from "./modules/pos/cash/pages/CashVoucherListPage";
+import CashMovementListPage from "./modules/pos/cash/pages/CashMovementListPage";
+import CashBalanceListPage from "./modules/pos/cash/pages/CashBalanceListPage";
+import CashTransferIncomePage from "./modules/pos/cash/pages/CashTransferIncomePage";
+import CashTransferExpensePage from "./modules/pos/cash/pages/CashTransferExpensePage";
+import CashOpeningIncomePage from "./modules/pos/cash/pages/CashOpeningIncomePage";
+import CashOpeningExpensePage from "./modules/pos/cash/pages/CashOpeningExpensePage";
 
 const App = () => {
   return (
@@ -65,6 +81,7 @@ const App = () => {
             <Route path="/pos" element={<PosPage />} />
             <Route path="/card" element={<CardPage />} />
             <Route path="/softplay" element={<SoftplayPage />} />
+            <Route path="/reports" element={<CashReportPage/>}/>
 
             {/* 💳 Kart Ayarları */}
             <Route path="/settings/card" element={<CardSettingsPage />} />
@@ -83,6 +100,21 @@ const App = () => {
             <Route path="/inventory/barcode-print" element={<BarcodePrintPage />} />
             <Route path="/inventory/quick-price" element={<QuickPriceChangePage />} />
             <Route path="/inventory/product-vouchers" element={<ProductVoucherListPage />} />
+
+             {/* 💵 KASA MODÜLÜ */}
+             <Route path="/cash/define" element={<CashDefinePage />} />
+            <Route path="/cash/from-customer" element={<CashCollectionPage />} />
+            <Route path="/cash/to-customer" element={<CashPaymentPage />} />
+            <Route path="/cash/other-collection" element={<CashOtherCollectionPage />} />
+            <Route path="/cash/period-income" element={<CashTransferIncomePage />} />
+            <Route path="/cash/other-payment" element={<CashOtherPaymentPage />} />
+            <Route path="/cash/transfer" element={<CashTransferPage />} />
+            <Route path="/cash/opening-income" element={<CashOpeningIncomePage />} />
+            <Route path="/cash/opening-expense" element={<CashOpeningExpensePage />} />
+            <Route path="/cash/period-expense" element={<CashTransferExpensePage />} />
+            <Route path="/cash/vouchers" element={<CashVoucherListPage />} />
+            <Route path="/cash/movements" element={<CashMovementListPage />} />
+            <Route path="/cash/balances" element={<CashBalanceListPage />} />
 
             {/* CARİ */}
             <Route path="/cari/list" element={<CariListPage />} />

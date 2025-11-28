@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./NumericPad.css";
 
-const NumericPad = ({ onChange }) => {
+const NumericPad = ({ onChange, showQuickAmounts = true }) => {
   const [value, setValue] = useState("0");
 
   const handleClick = (num) => {
@@ -36,7 +36,7 @@ const NumericPad = ({ onChange }) => {
     "0", ",", "←"
   ];
 
-  const quickAmounts = [ 200, 300, 500, 1000];
+  const quickAmounts = [200, 300, 500, 1000];
 
   return (
     <div className="numeric-pad">
@@ -54,23 +54,25 @@ const NumericPad = ({ onChange }) => {
             {num}
           </button>
         ))}
+
         <button className="pad-btn clear" onClick={handleClearAll}>
           Sil
         </button>
       </div>
 
-      {/* 🔹 Hızlı tutarlar bölümü */}
-      <div className="quick-amounts">
-        {quickAmounts.map((amount) => (
-          <button
-            key={amount}
-            className="quick-btn"
-            onClick={() => handleQuickSelect(amount)}
-          >
-            {amount} ₺
-          </button>
-        ))}
-      </div>
+      {showQuickAmounts && (
+        <div className="quick-amounts">
+          {quickAmounts.map((amount) => (
+            <button
+              key={amount}
+              className="quick-btn"
+              onClick={() => handleQuickSelect(amount)}
+            >
+              {amount} ₺
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -8,7 +8,6 @@ const CardInfoPanel = ({ card }) => {
   const dispatch = useDispatch();
   const { activeCard, pendingAmount } = useSelector((s) => s.card);
 
-  // Eğer kart okutulmadıysa placeholder değerler göster
   const safeCard = activeCard || card || {
     cardId: "—",
     type: "-",
@@ -18,6 +17,27 @@ const CardInfoPanel = ({ card }) => {
     specialSale: 0,
   };
 
+  // Genel log fonksiyonu
+  const logTransaction = (type, desc) => {
+    const log = {
+      transactionId: `${type.toUpperCase()}-${Date.now()}`,
+      cardId: safeCard.cardId,
+      cardType: safeCard.type,
+      amount: pendingAmount,
+      previousBalance: safeCard.balance,
+      newBalance:
+        type === "service"
+          ? safeCard.balance
+          : safeCard.balance + (pendingAmount || 0),
+      user: "admin",
+      location: "Kiosk-1",
+      description: desc,
+      date: new Date().toISOString(),
+      status: "success",
+    };
+    console.log("💾 [CARD LOG]", log);
+  };
+
   // ⚙️ Servis yükleme
   const handleServisYukle = () => {
     if (!activeCard) return alert("Lütfen önce bir kart okutun 💳");
@@ -25,6 +45,7 @@ const CardInfoPanel = ({ card }) => {
       return alert("Bu işlem sadece servis kartlarında geçerlidir ⚙️");
     if (pendingAmount <= 0) return alert("Yüklenecek servis adedini girin 🔢");
 
+    logTransaction("service", "Servis yükleme işlemi");
     dispatch(addService());
     alert(`${activeCard.cardId} kartına ${pendingAmount} servis eklendi ✅`);
   };
@@ -36,6 +57,7 @@ const CardInfoPanel = ({ card }) => {
       return alert("Bu işlem sadece müşteri kartlarında geçerlidir 🎫");
     if (pendingAmount <= 0) return alert("Yüklenecek tutarı girin 💰");
 
+    logTransaction("guest", "Misafir bakiyesi yüklendi");
     dispatch(addGuestBalance());
     alert(`${activeCard.cardId} kartına misafir yükleme yapıldı ✅`);
   };
@@ -45,13 +67,10 @@ const CardInfoPanel = ({ card }) => {
       <h2 className="title">Kart Bilgisi</h2>
 
       <div className="info-box">
-        {/* 🔹 Kart Numarası */}
         <div className="info-row">
           <span>Kart Numarası:</span>
           <strong>{safeCard.cardId}</strong>
         </div>
-
-        {/* 🔹 Kart Tipi */}
         <div className="info-row">
           <span>Kart Tipi:</span>
           <strong>
@@ -59,7 +78,6 @@ const CardInfoPanel = ({ card }) => {
           </strong>
         </div>
 
-        {/* 🔹 Servis kartlarında servis sayısı */}
         {safeCard.type === "service" && (
           <div className="info-row">
             <span>Servis Adedi:</span>
@@ -67,26 +85,22 @@ const CardInfoPanel = ({ card }) => {
           </div>
         )}
 
-        {/* 🔹 Toplam bakiye */}
         <div className="info-row">
           <span>Toplam Bakiye:</span>
           <strong>{safeCard.balance?.toFixed?.(2) || "0.00"} TL</strong>
         </div>
 
-        {/* 🔹 Misafir bakiyesi (her zaman gösterilir) */}
         <div className="info-row">
           <span>Misafir:</span>
           <strong>{safeCard.guestBalance?.toFixed?.(2) || "0.00"} TL</strong>
         </div>
 
-        {/* 🔹 Özel satış alanı */}
         <div className="info-row">
           <span>Özel Satış:</span>
           <strong>{safeCard.specialSale?.toFixed?.(2) || "0.00"} TL</strong>
         </div>
       </div>
 
-      {/* 🧭 Aksiyon butonları */}
       <div className="actions">
         <button className="btn orange" onClick={handleServisYukle}>
           Servis Yükle
@@ -94,9 +108,24 @@ const CardInfoPanel = ({ card }) => {
         <button className="btn gray" onClick={handleMisafirYukle}>
           Misafir Yükle
         </button>
-        <button className="btn gray">Özel Satış</button>
-        <button className="btn green">Raporlar</button>
-        <button className="btn blue">Kart Raporu</button>
+        <button
+          className="btn gray"
+          onClick={() => logTransaction("topup", "Normal bakiye yükleme")}
+        >
+          Özel Satış
+        </button>
+        <button
+          className="btn green"
+          onClick={() => console.log("📊 [RAPORLAR] görüntülendi")}
+        >
+          Raporlar
+        </button>
+        <button
+          className="btn blue"
+          onClick={() => console.log("📘 [KART RAPORU] görüntülendi")}
+        >
+          Kart Raporu
+        </button>
       </div>
     </div>
   );
