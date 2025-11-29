@@ -1,0 +1,235 @@
+/* ===== Genel Rapor Sayfa Stili ===== */
+.report-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background: var(--color-background, #f8f9fa);
+  color: var(--color-text, #111);
+  min-height: 100vh;
+  gap: 1rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* 🔹 Filtre Alanı */
+.report-filter-bar {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+}
+
+.filter-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--color-border2, #d1d5db);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: var(--color-surface);
+}
+
+.filter-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ===== Butonlar ===== */
+.btn {
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 0.9rem;
+}
+
+.btn-blue {
+  background: var(--color-info, #3b82f6);
+  color: #fff;
+}
+.btn-blue:hover {
+  background: var(--color-info-dark, #275fba);
+}
+
+.btn-gray {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+.btn-gray:hover {
+  background: var(--color-background-dark);
+}
+
+.btn-red {
+  background: var(--color-error, #ef4444);
+  color: #fff;
+}
+.btn-red:hover {
+  background: #d93025;
+}
+
+/* ===== Tablo Alanı ===== */
+.report-result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.report-title {
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-primary-dark, #047857);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+/* Tablo */
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid var(--color-border2, #e5e7eb);
+  padding: 0.6rem 0.8rem;
+  text-align: center;
+  font-size: 0.88rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.report-table th {
+  background: var(--color-background-dark, #f3f4f6);
+  color: var(--color-text, #1f2937);
+  font-weight: 600;
+}
+
+/* Renk ve hizalama */
+.report-table tr:nth-child(even) td {
+  background: var(--color-background, #fafafa);
+}
+
+.no-data {
+  text-align: center;
+  color: var(--color-text-muted, #9ca3af);
+  padding: 1rem;
+  font-style: italic;
+}
+
+/* Alt Toplam */
+.report-footer {
+  text-align: right;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--color-text, #111);
+  font-size: 0.95rem;
+}
+
+/* ===== Alt Buton Satırı ===== */
+.report-bottom-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.report-bottom-buttons .btn {
+  min-width: 150px;
+}
+
+/* ===== Gün Sonu / Özet Rapor ===== */
+.daily-summary-report {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 2vh 2vw;
+  margin: 2vh auto;
+  width: 90%;
+  box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.05);
+}
+
+.daily-summary-report .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--color-border2);
+  padding-bottom: 0.8vh;
+  margin-bottom: 1.5vh;
+}
+
+.tables-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1vw;
+}
+
+.summary-box {
+  background: var(--color-background);
+  border: 1px solid var(--color-border2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.summary-header {
+  font-weight: 700;
+  text-align: center;
+  padding: 0.8vh 0;
+  color: white;
+}
+
+.gray-bg {
+  background: var(--color-text-soft);
+}
+
+.blue-bg {
+  background: var(--color-info-dark);
+}
+
+.summary-box table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.summary-box th,
+.summary-box td {
+  padding: 0.6vh 0.8vw;
+  border-bottom: 1px solid var(--color-border2);
+  text-align: left;
+  font-size: 0.85rem;
+  vertical-align: middle;
+}
+
+.summary-box th {
+  background: var(--color-background-dark);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: 2vh;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import "./BestSellers.css";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../../../redux/slices/cartSlice";
+import { addToCart } from "../../../../../../redux/slices/cartSlice";
 
 const BestSellers = ({ items = [], loading, error }) => {
   const dispatch = useDispatch();

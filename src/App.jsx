@@ -12,7 +12,7 @@ import CardContainer from "./core/components/CardContainer/CardContainer";
 // 🔹 Ana Modül Sayfaları
 import CardPage from "./modules/card/pages/CardPage";
 import SoftplayPage from "./modules/softplay/pages/SoftplayPage";
-import PosPage from "./modules/pos/quicksale/pages/PosPage";
+import PosPage from "./modules/pos/sales/quicksale/pages/PosPage";
 
 // 💳 Kart Ayarları
 import CardSettingsPage from "./modules/card/pages/Settings/CardSettingsPage/CardSettingsPage";
@@ -32,12 +32,12 @@ import BarcodePrintPage from "./modules/pos/inventory/pages/BarcodePrintPage";
 import QuickPriceChangePage from "./modules/pos/inventory/pages/QuickPriceChangePage";
 import ProductVoucherListPage from "./modules/pos/inventory/pages/ProductVoucherListPage";
 
-//Cari
+// 🧮 Cari Modülü
 import CariListPage from "./modules/pos/cari/pages/CariListPage";
 import DebtVoucherPage from "./modules/pos/cari/pages/DebtVoucherPage";
 import CreditVoucherPage from "./modules/pos/cari/pages/CreditVoucherPage";
 import CollectionPage from "./modules/pos/cari/pages/CollectionPage";
-import PaymentPage from "./modules/pos/cari/pages/PaymentPage"
+import PaymentPage from "./modules/pos/cari/pages/PaymentPage";
 import OpeningDebtPage from "./modules/pos/cari/pages/OpeningDebtPage";
 import OpeningCreditPage from "./modules/pos/cari/pages/OpeningCreditPage";
 import TransferDebtPage from "./modules/pos/cari/pages/TransferDebtPage";
@@ -46,12 +46,13 @@ import TransferPage from "./modules/pos/cari/pages/TransferPage";
 import TransactionListPage from "./modules/pos/cari/pages/TransactionListPage";
 import MovementListPage from "./modules/pos/cari/pages/MovementListPage";
 import BalanceListPage from "./modules/pos/cari/pages/BalanceListPage";
+
+// 🚚 İrsaliye & Fatura
 import DispatchPage from "./modules/pos/dispatch/pages/DispatchPage";
 import DispatchListPage from "./modules/pos/dispatch/pages/DispatchListPage";
 import InvoicePage from "./modules/pos/invoice/pages/InvoicePage";
 import InvoiceListPage from "./modules/pos/invoice/pages/InvoiceListPage";
 import InvoiceLineListPage from "./modules/pos/invoice/pages/InvoiceLineListPage";
-import CashReportPage from "./modules/report/pages/CashReportPage";
 
 // 💵 Kasa Modülü Sayfaları
 import CashDefinePage from "./modules/pos/cash/pages/CashDefinePage";
@@ -68,6 +69,22 @@ import CashTransferExpensePage from "./modules/pos/cash/pages/CashTransferExpens
 import CashOpeningIncomePage from "./modules/pos/cash/pages/CashOpeningIncomePage";
 import CashOpeningExpensePage from "./modules/pos/cash/pages/CashOpeningExpensePage";
 
+// 📊 Satış Raporları (Yeni Eklenenler)
+import DailySummaryReport from "./modules/pos/sales/reports/pages/DailySummaryReport";
+import DailySalesReport from "./modules/pos/sales/reports/pages/DailySalesReport";
+import DailySalesDetailReport from "./modules/pos/sales/reports/pages/DailySalesDetailReport";
+import GeneralSalesReport from "./modules/pos/sales/reports/pages/GeneralSalesReport";
+import ProfitLossReport from "./modules/pos/sales/reports/pages/ProfitLossReport";
+import ProfitLossByCustomer from "./modules/pos/sales/reports/pages/ProfitLossByCustomer";
+import ProfitLossByCustomerDetail from "./modules/pos/sales/reports/pages/ProfitLossByCustomerDetail";
+import SaleListPage from "./modules/pos/sales/reports/pages/SaleListPage";
+
+// 🔁 Satış İade (Return)
+import QuickSaleReturnPage from "./modules/pos/sales/return/pages/QuickSaleReturnPage";
+
+// 📈 Raporlar
+import CashReportPage from "./modules/report/pages/CashReportPage";
+
 const App = () => {
   return (
     <Router>
@@ -81,7 +98,7 @@ const App = () => {
             <Route path="/pos" element={<PosPage />} />
             <Route path="/card" element={<CardPage />} />
             <Route path="/softplay" element={<SoftplayPage />} />
-            <Route path="/reports" element={<CashReportPage/>}/>
+            <Route path="/reports" element={<CashReportPage />} />
 
             {/* 💳 Kart Ayarları */}
             <Route path="/settings/card" element={<CardSettingsPage />} />
@@ -101,8 +118,8 @@ const App = () => {
             <Route path="/inventory/quick-price" element={<QuickPriceChangePage />} />
             <Route path="/inventory/product-vouchers" element={<ProductVoucherListPage />} />
 
-             {/* 💵 KASA MODÜLÜ */}
-             <Route path="/cash/define" element={<CashDefinePage />} />
+            {/* 💵 KASA MODÜLÜ */}
+            <Route path="/cash/define" element={<CashDefinePage />} />
             <Route path="/cash/from-customer" element={<CashCollectionPage />} />
             <Route path="/cash/to-customer" element={<CashPaymentPage />} />
             <Route path="/cash/other-collection" element={<CashOtherCollectionPage />} />
@@ -115,6 +132,18 @@ const App = () => {
             <Route path="/cash/vouchers" element={<CashVoucherListPage />} />
             <Route path="/cash/movements" element={<CashMovementListPage />} />
             <Route path="/cash/balances" element={<CashBalanceListPage />} />
+
+            {/* 📊 SATIŞ MODÜLÜ */}
+            <Route path="/sales/pos" element={<PosPage />} />
+            <Route path="/sales/return" element={<QuickSaleReturnPage />} />
+            <Route path="/sales/reports/daily-summary" element={<DailySummaryReport />} />
+            <Route path="/sales/reports/daily" element={<DailySalesReport />} />
+            <Route path="/sales/reports/daily-detail" element={<DailySalesDetailReport />} />
+            <Route path="/sales/reports/general" element={<GeneralSalesReport />} />
+            <Route path="/sales/reports/profit-loss" element={<ProfitLossReport />} />
+            <Route path="/sales/reports/profit-loss/customer" element={<ProfitLossByCustomer />} />
+            <Route path="/sales/reports/profit-loss/customer-detail" element={<ProfitLossByCustomerDetail />} />
+            <Route path="/sales/reports/list" element={<SaleListPage />} />
 
             {/* CARİ */}
             <Route path="/cari/list" element={<CariListPage />} />

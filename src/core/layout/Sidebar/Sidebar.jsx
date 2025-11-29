@@ -12,6 +12,27 @@ const Sidebar = ({ open, onClose }) => {
   };
 
   const menuMap = {
+    sales: [
+      // 🟢 Hızlı Satış ve İade
+      { key: "quick-sale", label: "💰 Hızlı Satış", path: "/sales/pos" },
+      { key: "quick-sale-return", label: "↩️ Hızlı Satış İade", path: "/sales/return" },
+      { key: "price-view", label: "💵 Fiyat Gör (Modal)", path: "#" },
+
+      // 📊 Günlük ve Özet Raporlar
+      { key: "daily-summary", label: "📅 Gün Sonu Özet Rapor", path: "/sales/reports/daily-summary" },
+      { key: "daily-sales", label: "📈 Günlük Satış Raporu", path: "/sales/reports/daily" },
+      { key: "daily-sales-detail", label: "🧾 Günlük Satış Detaylı Rapor", path: "/sales/reports/daily-detail" },
+
+      // 💹 Kar / Zarar Analizleri
+      { key: "profit-loss", label: "📊 Kar / Zarar Analizi", path: "/sales/reports/profit-loss" },
+      { key: "profit-loss-customer", label: "👤 Kar / Zarar (Cari Bazlı)", path: "/sales/reports/profit-loss/customer" },
+      { key: "profit-loss-customer-detail", label: "📋 Kar / Zarar (Cari Detaylı)", path: "/sales/reports/profit-loss/customer-detail" },
+
+      // 📜 Genel ve Liste Raporları
+      { key: "general-report", label: "🗂️ Genel Rapor", path: "/sales/reports/general" },
+      { key: "sales-list", label: "📑 Satış Listesi", path: "/sales/reports/list" },
+    ],
+
     cari: [
       { key: "account-define", label: "🧾 Hesap Tanımla", path: "/cari/list" },
       { key: "debt-vouchers", label: "💰 Borç Dekontu", path: "/cari/debt-vouchers" },
@@ -27,6 +48,7 @@ const Sidebar = ({ open, onClose }) => {
       { key: "movement-list", label: "📘 Cari Hareket Listesi", path: "/cari/movements" },
       { key: "balance-list", label: "📊 Cari Bakiye Listesi", path: "/cari/balances" },
     ],
+
     dispatch: [
       { key: "purchase", label: "🟢 Alış İrsaliyesi", path: "/dispatch/purchase" },
       { key: "sales", label: "🟠 Satış İrsaliyesi", path: "/dispatch/sales" },
@@ -34,6 +56,7 @@ const Sidebar = ({ open, onClose }) => {
       { key: "salesReturn", label: "🔵 Satış İade İrsaliyesi", path: "/dispatch/salesReturn" },
       { key: "dispatch-list", label: "📋 İrsaliye Listesi", path: "/dispatch/list" },
     ],
+
     pos: [
       { key: "product-list", label: "📦 Ürün Listesi", path: "/inventory/products" },
       { key: "warehouse-list", label: "🏢 Depo Listesi", path: "/inventory/warehouses" },
@@ -43,6 +66,7 @@ const Sidebar = ({ open, onClose }) => {
       { key: "quick-price", label: "⚡ Hızlı Fiyat Değişikliği", path: "/inventory/quick-price" },
       { key: "product-vouchers", label: "📑 Ürün Fiş Listesi", path: "/inventory/product-vouchers" },
     ],
+
     cash: [
       { key: "define", label: "🏦 Kasa Tanımla", path: "/cash/define" },
       { key: "from-customer", label: "💰 Cariden Tahsilat", path: "/cash/from-customer" },
@@ -58,6 +82,7 @@ const Sidebar = ({ open, onClose }) => {
       { key: "movement-list", label: "📘 Kasa Hareket Listesi", path: "/cash/movements" },
       { key: "balance-list", label: "📊 Kasa Bakiye Listesi", path: "/cash/balances" },
     ],
+
     invoice: [
       { key: "purchase", label: "📗 Alış (Fatura-Fiş)", path: "/invoice/purchase" },
       { key: "sales", label: "📘 Satış (Fatura-Fiş)", path: "/invoice/sales" },
@@ -66,16 +91,19 @@ const Sidebar = ({ open, onClose }) => {
       { key: "invoice-list", label: "📑 Fatura-Fiş Listesi", path: "/invoice/list" },
       { key: "invoice-line-list", label: "📋 Fatura-Fiş Satır Listesi", path: "/invoice/lines" },
     ],
+
     card: [
       { key: "card-settings", label: "⚙️ Kart Ayarları", path: "/settings/card" },
       { key: "guest-policy", label: "👥 Misafir Limitleri", path: "/settings/guests" },
       { key: "card-types", label: "💳 Kart Tipleri", path: "/settings/card-types" },
     ],
+
     softplay: [
       { key: "durations", label: "⏱ Süre Tarifeleri", path: "/settings/durations" },
       { key: "families", label: "👨‍👩‍👧 Aile Yönetimi", path: "/settings/families" },
       { key: "rules", label: "📜 Oyun Alanı Kuralları", path: "/settings/rules" },
     ],
+
     system: [
       { key: "users", label: "👤 Kullanıcılar", path: "/settings/users" },
       { key: "settings", label: "⚙️ Genel Ayarlar", path: "/settings/general" },
@@ -84,10 +112,11 @@ const Sidebar = ({ open, onClose }) => {
   };
 
   const sections = [
+    { key: "sales", title: "🧾 Satış İşlemleri" },
     { key: "cari", title: "💼 Cari İşlemleri" },
     { key: "dispatch", title: "📑 İrsaliye İşlemleri" },
-    { key: "pos", title: "🧾 POS & Envanter" },
-    { key: "cash", title: "🏦 Kasa İşlemleri" }, 
+    { key: "pos", title: "🧮 POS & Envanter" },
+    { key: "cash", title: "🏦 Kasa İşlemleri" },
     { key: "invoice", title: "🧾 Fatura-Fiş İşlemleri" },
     { key: "card", title: "💳 Kart Yönetimi" },
     { key: "softplay", title: "🧸 Softplay Alanı" },
@@ -95,8 +124,12 @@ const Sidebar = ({ open, onClose }) => {
   ];
 
   const handleSelect = (path) => {
-    navigate(path);
-    onClose?.();
+    if (path !== "#") {
+      navigate(path);
+      onClose?.();
+    } else {
+      alert("💡 Bu özellik modal olarak açılacak (yakında).");
+    }
   };
 
   return (
