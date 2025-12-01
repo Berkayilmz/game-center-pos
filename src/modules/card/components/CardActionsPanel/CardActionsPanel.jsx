@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CardActionsPanel.css";
 import { useSelector } from "react-redux";
+import qrService from "../../../../core/services/qrService";
 
 const CardActionsPanel = ({ onScan, onReset, onTopUp, disabled }) => {
   const [paymentType, setPaymentType] = useState(null);
@@ -18,23 +19,19 @@ const CardActionsPanel = ({ onScan, onReset, onTopUp, disabled }) => {
     resetPaymentType();
   };
 
+  // 💳 Bakiye yükleme işlemi
   const handleTopUp = () => {
-    if (!activeCard) {
-      alert("Önce bir kart okutun 💳");
-      return;
-    }
-    if (pendingAmount <= 0) {
-      alert("Geçerli bir tutar girin 💰");
-      return;
-    }
+    if (!activeCard) return alert("Önce bir kart okutun 💳");
+    if (pendingAmount <= 0) return alert("Geçerli bir tutar girin 💰");
+    if (!paymentType)
+      return alert("Lütfen ödeme tipini seçin (Nakit veya Kredi Kartı) 💳");
 
-    // 🔹 Loglama (gerçek backend’de POST edilecek formatta)
     const log = {
       transactionId: `TOPUP-${Date.now()}`,
       cardId: activeCard.cardId,
       cardType: activeCard.type,
       user: "admin",
-      paymentType: paymentType || "unknown",
+      paymentType,
       amountLoaded: pendingAmount,
       previousBalance: activeCard.balance,
       newBalance: activeCard.balance + pendingAmount,
@@ -44,27 +41,42 @@ const CardActionsPanel = ({ onScan, onReset, onTopUp, disabled }) => {
       description:
         paymentType === "cash"
           ? "Nakit bakiye yükleme"
-          : paymentType === "card"
-          ? "Kredi kartı ile bakiye yükleme"
-          : "Bilinmeyen ödeme tipiyle yükleme",
+          : "Kredi kartı ile bakiye yükleme",
       date: new Date().toISOString(),
       status: "success",
     };
 
     console.log("💾 [CARD TOPUP LOG]", log);
-
     onTopUp?.(paymentType);
     resetPaymentType();
   };
 
+  // 🎟️ QR Fiş oluşturma işlemi
+  const handleCreateQR = async () => {
+    if (pendingAmount <= 0) return alert("Fiş için geçerli bir tutar girin 💰");
+    if (!paymentType)
+      return alert("Lütfen ödeme tipini seçin (Nakit veya Kredi Kartı) 💳");
+
+    const newQR = await qrService.create(pendingAmount);
+    console.log("🧾 [QR FİŞ OLUŞTURULDU]", newQR);
+    alert(
+      `🎟️ QR fiş oluşturuldu!\n\nTutar: ${pendingAmount}₺\nÖdeme Tipi: ${
+        paymentType === "cash" ? "Nakit" : "Kredi Kartı"
+      }\nToken: ${newQR.token}`
+    );
+  };
+
   return (
     <div className="card-actions-panel">
+      {/* 🧭 Ana kontrol butonları */}
       <button className="btn orange" onClick={handleScan}>
         Kartı Tara
       </button>
+
       <button className="btn gray" onClick={handleReset}>
         Kartı Sıfırla
       </button>
+
       <button
         className="btn red"
         onClick={() => {
@@ -83,6 +95,7 @@ const CardActionsPanel = ({ onScan, onReset, onTopUp, disabled }) => {
 
       <div className="divider" />
 
+      {/* 💳 Ödeme tipi seçimi */}
       <button
         className={`btn payment ${paymentType === "cash" ? "active" : ""}`}
         onClick={() => setPaymentType("cash")}
@@ -96,10 +109,20 @@ const CardActionsPanel = ({ onScan, onReset, onTopUp, disabled }) => {
         Kredi Kartı
       </button>
 
+      {/* 🎟️ Fiş Ver */}
       <button
-        className="btn primary"
+        className="btn blue"
+        onClick={handleCreateQR}
+        disabled={pendingAmount <= 0 || !paymentType}
+      >
+        🎟️ Fiş Ver
+      </button>
+
+      {/* 💰 Bakiye Yükle */}
+      <button
+        className="btn green"
         onClick={handleTopUp}
-        disabled={disabled}
+        disabled={disabled || !paymentType}
       >
         Bakiye Yükle
       </button>

@@ -59,22 +59,22 @@ const cardSlice = createSlice({
       }
     },
 
-    // Kartan ücret düşme (varsa misafir düş yoksa bakiye düş)
+    // Karttan ücret düşme (varsa misafir düş yoksa bakiye düş)
     deductBalance: (state, action) => {
       const { amount } = action.payload;
       const card = state.activeCard;
       if (!card) return;
-    
+
       // 1️⃣ Öncelik: misafir bakiyesi
       if ((card.guestBalance || 0) >= amount) {
         card.guestBalance -= amount;
-      } 
+      }
       // 2️⃣ Misafir bakiyesi yetersizse, eksik kalan kısmı normal bakiyeden al
       else if ((card.guestBalance || 0) > 0) {
         const remaining = amount - card.guestBalance;
         card.guestBalance = 0;
         card.balance = Math.max(0, card.balance - remaining);
-      } 
+      }
       // 3️⃣ Misafir bakiyesi zaten yoksa doğrudan normal bakiyeden düş
       else {
         card.balance = Math.max(0, card.balance - amount);
@@ -114,15 +114,51 @@ const cardSlice = createSlice({
       alert("1 servis kullanıldı ✅");
     },
 
-    // Misafir yükleme
+    // 👥 Misafir yükleme
     addGuestBalance: (state) => {
-      if(state.activeCard && state.pendingAmount > 0) {
+      if (state.activeCard && state.pendingAmount > 0) {
         state.activeCard.guestBalance += state.pendingAmount;
         cardService.updateCard(state.activeCard.id, state.activeCard);
         state.pendingAmount = 0;
       }
     },
 
+    // 🎟️ Özel satış yükleme (Yeni)
+    // 🎟️ Özel satış yükleme (updateCard ile tutarlı versiyon)
+    addSpecialSale: (state, action) => {
+      const { name, credit, price } = action.payload;
+      const card = state.activeCard;
+
+      if (!card) {
+        alert("Lütfen önce bir kart okutun 💳");
+        return;
+      }
+
+      if (!name || credit <= 0 || price <= 0) {
+        alert("Geçerli bir kampanya adı, kredi ve fiyat giriniz!");
+        return;
+      }
+
+      // 🧠 İş mantığı: aktif kartı doğrudan Redux içinde güncelle
+      if (!Array.isArray(card.specialSales)) {
+        card.specialSales = [];
+      }
+
+      card.specialSales.push({
+        name,
+        credit,
+        price,
+        date: new Date().toISOString(),
+      });
+
+      // Krediyi mevcut bakiyeye ekle
+      card.balance += credit;
+
+      // 🗃️ LocalStorage senkronizasyonu
+      cardService.updateCard(card.id, card);
+
+      alert(`🎟️ ${name} kampanyasından ${credit} kredi (${price}₺) eklendi!`);
+    },
   },
 
   extraReducers: (builder) => {
@@ -150,7 +186,8 @@ export const {
   deductBalance,
   addService,
   useService,
-  addGuestBalance
+  addGuestBalance,
+  addSpecialSale, // ✅ eklendi
 } = cardSlice.actions;
 
 export default cardSlice.reducer;

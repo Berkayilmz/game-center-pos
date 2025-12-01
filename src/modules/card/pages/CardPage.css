@@ -1,19 +1,210 @@
-.card-page {
-  height: 90vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 24px;
-  padding: 8px;
-  background-color: #f3f4f6; /* 👈 daha yumuşak gri */
-  box-sizing: border-box;
-}
+/* ===========================================================
+   🎯 Kart Sayfası Ana Düzen
+   =========================================================== */
 
-/* Paneller arası oran */
-.card-page > * {
-  flex: 1;
-  background: var(--color-surface);
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  padding: 16px;
-}
+   .card-page {
+    height: 90vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 24px;
+    padding: 8px;
+    background-color: var(--color-background);
+    box-sizing: border-box;
+  }
+  
+  /* Paneller arası oran */
+  .card-page > * {
+    flex: 1;
+    background: var(--color-surface);
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    padding: 16px;
+  }
+  
+  
+  /* ===========================================================
+     🩵 Modal Genel
+     =========================================================== */
+  
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  /* 🪟 Modal Kutu */
+  .modal {
+    background: var(--color-surface);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    width: 460px;
+    max-width: 90%;
+    padding: 1.6rem;
+    font-family: "Segoe UI", sans-serif;
+    animation: modalFadeIn 0.25s ease-out;
+    color: var(--color-text);
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Başlık */
+  .modal h3 {
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+    color: var(--color-text);
+    text-align: center;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.6rem;
+    letter-spacing: 0.3px;
+  }
+  
+  /* Gövde */
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  /* Etiketler */
+  .modal-body label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+  
+  /* Giriş alanları */
+  .modal-body input[type="text"],
+  .modal-body input[type="number"],
+  .modal-body select,
+  .modal-body textarea {
+    padding: 0.55rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: var(--color-background);
+    color: var(--color-text);
+    transition: all 0.2s ease;
+    outline: none;
+  }
+  
+  .modal-body input:focus,
+  .modal-body select:focus,
+  .modal-body textarea:focus {
+    border-color: var(--color-info);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+  
+  /* Textarea */
+  .modal-body textarea {
+    resize: none;
+    min-height: 60px;
+  }
+  
+  /* Checkbox alanları */
+  .modal-checkboxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    border-top: 1px dashed var(--color-border);
+    padding-top: 0.8rem;
+  }
+  
+  .modal-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    color: var(--color-text-soft);
+  }
+  
+  /* Alt Butonlar */
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1.4rem;
+  }
+  
+  
+  /* ===========================================================
+     🧩 Butonlar
+     =========================================================== */
+  
+  .btn {
+    cursor: pointer;
+    border: none;
+    padding: 0.6rem 1.1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+  }
+  
+  /* 🟢 Yeşil (Onay) */
+  .btn.green {
+    background: var(--color-primary);
+    color: var(--color-text-white);
+  }
+  .btn.green:hover {
+    background: var(--color-primary-dark);
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+  }
+  
+  /* ⚪ Gri (Nötr / İptal) */
+  .btn.gray {
+    background: var(--color-border2);
+    color: var(--color-text);
+  }
+  .btn.gray:hover {
+    background: var(--color-border);
+  }
+  
+  /* 🔵 Mavi (Bilgilendirme / Yardım) */
+  .btn.blue {
+    background: var(--color-info);
+    color: var(--color-text-white);
+  }
+  .btn.blue:hover {
+    background: var(--color-info-dark);
+  }
+  
+  /* 🔴 Kırmızı (Uyarı / Silme) */
+  .btn.red {
+    background: var(--color-error);
+    color: var(--color-text-white);
+  }
+  .btn.red:hover {
+    background: var(--color-warning);
+  }
+  
+  /* 🟠 Turuncu (Uyarı / Aksiyon) */
+  .btn.orange {
+    background: var(--color-danger);
+    color: var(--color-text-white);
+  }
+  .btn.orange:hover {
+    background: var(--color-warning);
+  }
+  
+  /* 💜 Özel (Accent) */
+  .btn.purple {
+    background: var(--color-accent-purple);
+    color: var(--color-text-white);
+  }
+  .btn.purple:hover {
+    background: var(--color-accent-purple-light);
+  }

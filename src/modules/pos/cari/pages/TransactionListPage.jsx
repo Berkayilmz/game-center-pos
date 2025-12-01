@@ -1,6 +1,6 @@
-// src/modules/pos/cari/pages/TransactionListPage.jsx
 import React, { useState } from "react";
 import "../cari.css";
+import { ExcelService } from "../../../../core/services/ExcelService";
 
 const TransactionListPage = () => {
   const [filters, setFilters] = useState({
@@ -34,21 +34,91 @@ const TransactionListPage = () => {
     },
   ]);
 
+  // 🔹 Excel Kolonları (import & export ortak)
+  const excelColumns = [
+    { key: "docNo", header: "Evrak No" },
+    { key: "date", header: "Evrak Tarihi" },
+    { key: "account", header: "Cari Adı / Ünvanı" },
+    { key: "type", header: "İşlem Türü" },
+    { key: "code", header: "Cari Kodu" },
+    { key: "description", header: "Açıklama" },
+    { key: "amount", header: "İşlem Tutarı", format: "currency" },
+  ];
+
+  // 🔍 Filtreleme
   const handleSearch = () => {
     console.log("Filtreleme:", filters);
   };
 
+  // ❌ Silme
   const handleDelete = (index) => {
     if (window.confirm("Bu cari fişi silinsin mi?")) {
       setTransactions(transactions.filter((_, i) => i !== index));
     }
   };
 
+  // 📤 Excel’e Aktar
+  const handleExport = () => {
+    if (transactions.length === 0) {
+      alert("Aktarılacak veri bulunamadı!");
+      return;
+    }
+    ExcelService.exportToExcel(transactions, excelColumns, "CariFisListesi");
+  };
+
+  // 📥 Excel’den Aktar
+  const handleImport = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      const imported = await ExcelService.importFromExcel(file, excelColumns);
+      if (!Array.isArray(imported) || imported.length === 0) {
+        alert("Excel dosyasında veri bulunamadı!");
+        return;
+      }
+
+      // mevcut verilerin üstüne ekler
+      setTransactions((prev) => [...prev, ...imported]);
+      alert(`📥 ${imported.length} cari fiş başarıyla aktarıldı!`);
+    } catch (err) {
+      console.error("Excel import hatası:", err);
+      alert("Excel dosyası okunamadı!");
+    }
+
+    e.target.value = ""; // input reset
+  };
+
   return (
     <div className="settings-page">
+      {/* Başlık + Butonlar */}
       <div className="settings-header">
         <h2>📑 Cari Fiş Listesi</h2>
-        <button className="btn gray">Excel'e Aktar</button>
+        <div className="header-buttons">
+          {/* Gizli dosya input */}
+          <input
+            type="file"
+            id="excel-import"
+            accept=".xlsx,.xls"
+            style={{ display: "none" }}
+            onChange={handleImport}
+          />
+
+          <button
+            className="btn orange"
+            onClick={() => document.getElementById("excel-import").click()}
+          >
+            📥 Excel'den Aktar
+          </button>
+
+          <button
+            className="btn blue"
+            onClick={handleExport}
+            disabled={transactions.length === 0}
+          >
+            📤 Excel'e Aktar
+          </button>
+        </div>
       </div>
 
       {/* 🔍 Filtre Alanı */}
@@ -105,7 +175,7 @@ const TransactionListPage = () => {
         />
 
         <button className="btn blue small" onClick={handleSearch}>
-          Sorgula
+          🔍 Sorgula
         </button>
       </div>
 

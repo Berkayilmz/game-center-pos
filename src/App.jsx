@@ -15,9 +15,8 @@ import SoftplayPage from "./modules/softplay/pages/SoftplayPage";
 import PosPage from "./modules/pos/sales/quicksale/pages/PosPage";
 
 // 💳 Kart Ayarları
-import CardSettingsPage from "./modules/card/pages/Settings/CardSettingsPage/CardSettingsPage";
-import CardTypesPage from "./modules/card/pages/Settings/CardTypesPage/CardTypesPage";
-import GuestPolicyPage from "./modules/card/pages/Settings/GuestPolicyPage/GuestPolicyPage";
+import CardSettingsPage from "./modules/card/pages/Settings/CardSettingsPage";
+import SpecialSalesPage from "./modules/card/pages/Settings/SpecialSalePage";
 
 // 🧸 Softplay Ayarları
 import DurationSettingsPage from "./modules/softplay/pages/Settings/DurationSettingsPage/DurationSettingsPage";
@@ -84,6 +83,7 @@ import QuickSaleReturnPage from "./modules/pos/sales/return/pages/QuickSaleRetur
 
 // 📈 Raporlar
 import CashReportPage from "./modules/report/pages/CashReportPage";
+import QRVoucherListPage from "./modules/card/pages/Settings/QRVoucherListPage";
 
 const App = () => {
   return (
@@ -102,8 +102,8 @@ const App = () => {
 
             {/* 💳 Kart Ayarları */}
             <Route path="/settings/card" element={<CardSettingsPage />} />
-            <Route path="/settings/card-types" element={<CardTypesPage />} />
-            <Route path="/settings/guests" element={<GuestPolicyPage />} />
+            <Route path="/settings/special-sale" element={<SpecialSalesPage/>}/>
+            <Route path="/settings/qr-voucher" element={<QRVoucherListPage/>}/>
 
             {/* 🧸 Softplay Ayarları */}
             <Route path="/settings/durations" element={<DurationSettingsPage />} />

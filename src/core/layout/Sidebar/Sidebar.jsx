@@ -94,8 +94,8 @@ const Sidebar = ({ open, onClose }) => {
 
     card: [
       { key: "card-settings", label: "⚙️ Kart Ayarları", path: "/settings/card" },
-      { key: "guest-policy", label: "👥 Misafir Limitleri", path: "/settings/guests" },
-      { key: "card-types", label: "💳 Kart Tipleri", path: "/settings/card-types" },
+      { key: "special-sale", label: "⚙️ Özel Satış", path: "/settings/special-sale" },
+      { key: "qr-voucher", label: "⚙️ QR Fişleri", path: "/settings/qr-voucher" },
     ],
 
     softplay: [

@@ -1,12 +1,13 @@
-// src/modules/pos/invoice/pages/InvoiceListPage.jsx
 import React, { useState } from "react";
 import "../invoice.css";
 import { useNavigate } from "react-router-dom";
+import { ExcelService } from "../../../../core/services/ExcelService"; // ✅ Excel servisi dahil edildi
 
 const InvoiceListPage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
+  // 🔹 Örnek veri
   const [invoices] = useState([
     {
       docNo: "INV-0001",
@@ -37,6 +38,7 @@ const InvoiceListPage = () => {
     },
   ]);
 
+  // 🔍 Filtreleme
   const filtered = invoices.filter(
     (i) =>
       i.docNo.toLowerCase().includes(search.toLowerCase()) ||
@@ -44,15 +46,50 @@ const InvoiceListPage = () => {
       i.type.toLowerCase().includes(search.toLowerCase())
   );
 
+  // 🔸 Excel kolon tanımları
+  const excelColumns = [
+    { key: "docNo", header: "Evrak No" },
+    { key: "type", header: "Tür" },
+    { key: "date", header: "Tarih", format: "date" },
+    { key: "account", header: "Cari Hesap" },
+    { key: "description", header: "Açıklama" },
+    { key: "itemCount", header: "Kalem Sayısı" },
+    { key: "total", header: "Tutar (₺)", format: "currency" },
+  ];
+
+  // 📤 Excel'e Aktar
+  const handleExport = () => {
+    if (filtered.length === 0) {
+      alert("Aktarılacak veri bulunamadı!");
+      return;
+    }
+    ExcelService.exportToExcel(filtered, excelColumns, "FaturaFisListesi");
+  };
+
   return (
     <div className="settings-page">
+      {/* 🔹 Başlık ve Butonlar */}
       <div className="settings-header">
         <h2>📑 Fatura-Fiş Listesi</h2>
-        <button className="btn green" onClick={() => navigate("/invoice/purchase")}>
-          + Yeni Fatura / Fiş
-        </button>
+        <div className="header-buttons">
+          <button
+            className="btn blue"
+            onClick={handleExport}
+            disabled={filtered.length === 0}
+          >
+            📤 Excel'e Aktar
+          </button>
+
+          <button
+            className="btn green"
+            onClick={() => navigate("/invoice/purchase")}
+          >
+            + Yeni Fatura / Fiş
+          </button>
+        </div>
       </div>
 
+      {/* 🔍 Arama Alanı */}
       <div className="filter-bar">
         <input
           type="text"
@@ -62,6 +99,7 @@ const InvoiceListPage = () => {
         />
       </div>
 
+      {/* 📋 Tablo */}
       <div className="table-container">
         <table className="product-table">
           <thead>
@@ -92,7 +130,14 @@ const InvoiceListPage = () => {
                   <td>{i.account}</td>
                   <td>{i.description}</td>
                   <td>{i.itemCount}</td>
-                  <td>{i.total.toFixed(2)}</td>
+                  <td
+                    style={{
+                      color: i.total < 0 ? "red" : "black",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {Number(i.total || 0).toFixed(2)}
+                  </td>
                   <td>
                     <div className="actions">
                       <button

@@ -1,6 +1,6 @@
-// src/modules/pos/cari/pages/MovementListPage.jsx
 import React, { useState } from "react";
 import "../cari.css";
+import { ExcelService } from "../../../../core/services/ExcelService";
 
 const MovementListPage = () => {
   const [filters, setFilters] = useState({
@@ -34,15 +34,83 @@ const MovementListPage = () => {
     },
   ]);
 
+  // 🔹 Excel Kolon Tanımı
+  const excelColumns = [
+    { key: "type", header: "İşlem Türü" },
+    { key: "docNo", header: "Evrak No" },
+    { key: "date", header: "Evrak Tarihi" },
+    { key: "account", header: "Cari Adı / Ünvanı" },
+    { key: "code", header: "Cari Kodu" },
+    { key: "debt", header: "Borç Tutarı", format: "currency" },
+    { key: "credit", header: "Alacak Tutarı", format: "currency" },
+  ];
+
+  // 🔍 Filtreleme
   const handleSearch = () => {
     console.log("Filtreleme:", filters);
   };
 
+  // 📤 Excel'e Aktar
+  const handleExport = () => {
+    if (movements.length === 0) {
+      alert("Aktarılacak veri bulunamadı!");
+      return;
+    }
+    ExcelService.exportToExcel(movements, excelColumns, "CariHareketListesi");
+  };
+
+  // 📥 Excel'den Aktar
+  const handleImport = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      const imported = await ExcelService.importFromExcel(file, excelColumns);
+      if (!Array.isArray(imported) || imported.length === 0) {
+        alert("Excel dosyasında veri bulunamadı!");
+        return;
+      }
+
+      setMovements((prev) => [...prev, ...imported]);
+      alert(`📥 ${imported.length} cari hareket başarıyla aktarıldı!`);
+    } catch (err) {
+      console.error("Excel import hatası:", err);
+      alert("Excel dosyası okunamadı!");
+    }
+
+    e.target.value = ""; // input reset
+  };
+
   return (
     <div className="settings-page">
+      {/* 🔹 Başlık + Excel Butonları */}
       <div className="settings-header">
         <h2>📘 Cari Hareket Listesi</h2>
-        <button className="btn gray">Excel'e Aktar</button>
+        <div className="header-buttons">
+          {/* Gizli Dosya Seçici */}
+          <input
+            type="file"
+            id="excel-import"
+            accept=".xlsx,.xls"
+            style={{ display: "none" }}
+            onChange={handleImport}
+          />
+
+          <button
+            className="btn orange"
+            onClick={() => document.getElementById("excel-import").click()}
+          >
+            📥 Excel'den Aktar
+          </button>
+
+          <button
+            className="btn blue"
+            onClick={handleExport}
+            disabled={movements.length === 0}
+          >
+            📤 Excel'e Aktar
+          </button>
+        </div>
       </div>
 
       {/* 🔍 Filtre Barı */}
@@ -99,7 +167,7 @@ const MovementListPage = () => {
         />
 
         <button className="btn blue small" onClick={handleSearch}>
-          Sorgula
+          🔍 Sorgula
         </button>
       </div>
 
@@ -113,8 +181,8 @@ const MovementListPage = () => {
               <th>Evrak Tarihi</th>
               <th>Cari Adı / Ünvanı</th>
               <th>Cari Kodu</th>
-              <th>Borç Tutar</th>
-              <th>Alacak Tutar</th>
+              <th>Borç Tutarı</th>
+              <th>Alacak Tutarı</th>
             </tr>
           </thead>
           <tbody>
@@ -132,8 +200,8 @@ const MovementListPage = () => {
                   <td>{m.date}</td>
                   <td>{m.account}</td>
                   <td>{m.code}</td>
-                  <td>{m.debt.toFixed(2)} ₺</td>
-                  <td>{m.credit.toFixed(2)} ₺</td>
+                  <td>{Number(m.debt || 0).toFixed(2)} ₺</td>
+                  <td>{Number(m.credit || 0).toFixed(2)} ₺</td>
                 </tr>
               ))
             )}

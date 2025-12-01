@@ -12,9 +12,10 @@ const load = () => {
       id: i + 1,
       cardId: `FACR-100${i}`,
       type: "customer",
-      balance: Math.floor(Math.random() * 300),
+      balance: 0,
       guestBalance: 0, // Misafir bakiyesi
       serviceCount: 0,
+      specialSales: [], // ✅ eklendi
       isGuest: false,
       createdAt: new Date().toISOString(),
     })),
@@ -25,6 +26,7 @@ const load = () => {
       balance: 0,
       guestBalance: 0,
       serviceCount: 10,
+      specialSales: [], // ✅ eklendi
       isGuest: false,
       createdAt: new Date().toISOString(),
     },
@@ -35,6 +37,7 @@ const load = () => {
       balance: 0,
       guestBalance: 0,
       serviceCount: 5,
+      specialSales: [], // ✅ eklendi
       isGuest: false,
       createdAt: new Date().toISOString(),
     },
@@ -95,6 +98,36 @@ const cardService = {
     if (!card || card.type !== "customer")
       throw new Error("Misafir yükleme sadece müşteri kartına yapılabilir!");
     card.guestBalance += amount;
+    card.updatedAt = new Date().toISOString();
+    save();
+    return card;
+  },
+
+  // 🎟️ Özel satış yükle
+  async addSpecialSale(id, { name, credit, price }) {
+    const card = cards.find((c) => c.id === id);
+    if (!card)
+      throw new Error("Kart bulunamadı!");
+
+    // Eğer alan yoksa oluştur
+    if (!Array.isArray(card.specialSales)) {
+      card.specialSales = [];
+    }
+
+    // Özel satış kaydını oluştur
+    const saleRecord = {
+      name,
+      credit,
+      price,
+      date: new Date().toISOString(),
+    };
+
+    // Karta kaydet
+    card.specialSales.push(saleRecord);
+
+    // Krediyi bakiyeye yansıt (burada kredi TL karşılığı gibi davranıyor)
+    card.balance += credit;
+
     card.updatedAt = new Date().toISOString();
     save();
     return card;

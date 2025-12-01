@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../dispatch.css";
 import { useNavigate } from "react-router-dom";
+import { ExcelService } from "../../../../core/services/ExcelService";
 
 const DispatchListPage = () => {
   const navigate = useNavigate();
@@ -45,18 +46,50 @@ const DispatchListPage = () => {
       d.type.toLowerCase().includes(search.toLowerCase())
   );
 
+  // 🔸 Excel kolonları
+  const excelColumns = [
+    { key: "docNo", header: "Evrak No" },
+    { key: "type", header: "İrsaliye Türü" },
+    { key: "date", header: "Tarih", format: "date" },
+    { key: "account", header: "Cari Hesap" },
+    { key: "description", header: "Açıklama" },
+    { key: "itemCount", header: "Kalem Sayısı" },
+    { key: "total", header: "Toplam Tutar", format: "currency" },
+  ];
+
+  // 📤 Excel'e Aktar
+  const handleExport = () => {
+    if (filtered.length === 0) {
+      alert("Aktarılacak veri bulunamadı!");
+      return;
+    }
+    ExcelService.exportToExcel(filtered, excelColumns, "IrsaliyeListesi");
+  };
+
   return (
     <div className="settings-page">
+      {/* 🔹 Başlık ve Butonlar */}
       <div className="settings-header">
         <h2>📑 İrsaliye Listesi</h2>
-        <button
-          className="btn green"
-          onClick={() => navigate("/dispatch/purchase")}
-        >
-          + Yeni İrsaliye
-        </button>
+        <div className="header-buttons">
+          <button
+            className="btn blue"
+            onClick={handleExport}
+            disabled={filtered.length === 0}
+          >
+            📤 Excel'e Aktar
+          </button>
+
+          <button
+            className="btn green"
+            onClick={() => navigate("/dispatch/purchase")}
+          >
+            + Yeni İrsaliye
+          </button>
+        </div>
       </div>
 
+      {/* 🔍 Arama Alanı */}
       <div className="filter-bar">
         <input
           type="text"
@@ -66,6 +99,7 @@ const DispatchListPage = () => {
         />
       </div>
 
+      {/* 📋 Tablo */}
       <div className="table-container">
         <table className="product-table">
           <thead>
@@ -96,7 +130,14 @@ const DispatchListPage = () => {
                   <td>{d.account}</td>
                   <td>{d.description}</td>
                   <td>{d.itemCount}</td>
-                  <td>{d.total.toFixed(2)}</td>
+                  <td
+                    style={{
+                      color: d.total < 0 ? "red" : "black",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {Number(d.total || 0).toFixed(2)}
+                  </td>
                   <td>
                     <div className="actions">
                       <button
