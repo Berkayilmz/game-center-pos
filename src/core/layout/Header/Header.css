@@ -82,9 +82,9 @@
 }
 
 .clock {
-  color: var(--color-text-soft);
-  font-weight: 600;
-  font-size: 1rem;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.2rem;
   letter-spacing: 0.3px;
 }
 

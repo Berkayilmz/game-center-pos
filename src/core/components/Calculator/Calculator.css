@@ -1,0 +1,98 @@
+.calculator {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  /* Display */
+  .calculator-display {
+    background: var(--color-background);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 80px;
+  }
+  
+  .calculator-expression {
+    font-size: 0.9rem;
+    color: var(--color-text-soft);
+    min-height: 1.2em;
+  }
+  
+  .calculator-current {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-text);
+  }
+  
+  /* Keypad Grid */
+  .calculator-keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  /* Buttons */
+  .calc-btn {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--color-border2);
+    color: var(--color-text);
+    transition: all 0.2s;
+  }
+  
+  .calc-btn:hover {
+    background: var(--color-primary-light);
+    transform: translateY(-2px);
+  }
+  
+  .calc-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Operator (+ - × ÷) */
+  .calc-btn.operator {
+    background: var(--color-primary);
+    color: var(--color-text-white);
+  }
+  
+  .calc-btn.operator:hover {
+    background: var(--color-primary-dark);
+  }
+  
+  /* Equals (=) */
+  .calc-btn.equals {
+    grid-row: span 2;
+    background: var(--color-success);
+    color: var(--color-text-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .calc-btn.equals:hover {
+    background: var(--color-info-dark); /* daha koyu ve belirgin */
+  }
+  
+  /* Clear (C) */
+  .calc-btn.clear {
+    background: var(--color-danger);
+    color: var(--color-text-white);
+  }
+  
+  .calc-btn.clear:hover {
+    background: var(--color-error);
+  }
+  
+  /* Zero geniş */
+  .calc-btn.zero {
+    grid-column: span 2;
+  }
