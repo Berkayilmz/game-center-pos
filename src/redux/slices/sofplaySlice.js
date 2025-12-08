@@ -85,11 +85,18 @@ const softplaySlice = createSlice({
     setChildInside: (state, action) => {
       const { id, duration } = action.payload;
       const child = state.children.find((c) => c.id === id);
+    
       if (child) {
         child.isSoftplay = true;
         child.entryTime = Date.now();
         child.duration = duration;
+    
+        // Tekrar girişlerde tüm zamanlayıcılar sıfırlanmalı
+        child.isFrozen = false;
+        child.freezeStart = null;
+        child.totalFrozenTime = 0;
       }
+    
       softplayService.saveChildren(state.children);
     },
     setChildOutside: (state, action) => {
@@ -97,8 +104,13 @@ const softplaySlice = createSlice({
       const child = state.children.find((c) => c.id === id);
       if (child) {
         child.isSoftplay = false;
+    
+        // ⛔ En önemli adım: tüm zamanlayıcıları temizle
         delete child.entryTime;
         delete child.duration;
+        child.isFrozen = false;
+        child.freezeStart = null;
+        child.totalFrozenTime = 0;
       }
       softplayService.saveChildren(state.children);
     },
